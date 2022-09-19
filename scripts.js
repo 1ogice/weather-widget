@@ -21,10 +21,14 @@ function logDaysOfWeek(day) {
 }
 logDaysOfWeek();
 
+function iconURL(icon) {
+  let iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  return iconURL;
+}
+
 function APIcall(res) {
   icon = res.data.weather[0].icon;
-  iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-  mainIcon.src = iconUrl;
+  mainIcon.src = iconURL(icon);
   currentWeather.innerHTML = res.data.weather[0].main;
   currentTemp.innerHTML = res.data.main.temp.toFixed(0);
   currentFLTemp.innerHTML = res.data.main.feels_like.toFixed(0);
@@ -38,8 +42,7 @@ function setDaysWeatherInfo(list) {
     window["DayWeatherDescription_" + `${i}`].innerHTML =
       list[i].weather[0].main;
     icon = list[i].weather[0].icon;
-    iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-    window["DayImg_" + `${i}`].src = iconUrl;
+    window["DayImg_" + `${i}`].src = iconURL(icon);
     window["DayMaxTemp_" + `${i}`].innerHTML = list[i].main.temp_max.toFixed(0);
     window["DayMinTemp_" + `${i}`].innerHTML = list[i].main.temp_min.toFixed(0);
   }
@@ -57,6 +60,11 @@ function filterData(list) {
     });
 }
 
+function forecastURL(city, api) {
+  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
+  return forecastURL;
+}
+
 function getCalledWeather() {
   city = search.value;
 
@@ -65,9 +73,7 @@ function getCalledWeather() {
   axios.get(calledWeatherURL).then((res) => {
     APIcall(res);
 
-    let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
-
-    axios.get(forecastURL).then((result) => {
+    axios.get(forecastURL(city, api)).then((result) => {
       let list = result.data.list;
       filterData(list);
       setDaysWeatherInfo(list);
@@ -85,9 +91,7 @@ function getCurrentWeather() {
       city = res.data.name;
       APIcall(res);
 
-      let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
-
-      axios.get(forecastURL).then((result) => {
+      axios.get(forecastURL(city, api)).then((result) => {
         let list = result.data.list;
         filterData(list);
         setDaysWeatherInfo(list);
