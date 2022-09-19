@@ -4,6 +4,10 @@ body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+body p {
+  margin: 0;
+  color: white;
+}
 
 main {
   margin: 10px auto 0 auto;
@@ -62,7 +66,6 @@ main .main-section-2 {
   overflow: hidden;
   border-radius: 10px;
   height: 520px;
-  background-color: red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -75,10 +78,116 @@ main .main-section-2 {
           justify-content: space-between;
 }
 main .main-section-2 header {
-  height: 100px;
+  height: 150px;
   background-color: #131a28;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-main .main-section-2 section {
+main .main-section-2 header .temp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100px;
+  height: 80px;
+}
+main .main-section-2 header .temp #mainNumbers {
+  font-size: 30px;
+}
+main .main-section-2 header .temp #secondNumbers {
+  font-size: 12px;
+}
+main .main-section-2 header .cityName {
+  width: 130px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+main .main-section-2 header .cityName #weather {
+  font-weight: bold;
+}
+main .main-section-2 header .cityName p {
+  font-size: 12px;
+  width: 90%;
+}
+main .main-section-2 header #icon {
+  width: 60px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+main .main-section-2 #anotherValues {
   height: 420px;
   background-color: #293446;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+main .main-section-2 #anotherValues .another-temp-values {
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+main .main-section-2 #anotherValues .another-temp-values .weather-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+main .main-section-2 #anotherValues .another-temp-values .weather-info .weather-description {
+  font-size: 12px;
+}
+main .main-section-2 #anotherValues .another-temp-values .temp-values {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }

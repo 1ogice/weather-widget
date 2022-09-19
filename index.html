@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
   </head>
@@ -12,7 +13,15 @@
       <section class="main-section-1">
         <form action="">
           <section class="form-section">
-            <input type="text" placeholder="Your Location:" />
+            <input id="search" type="text" placeholder="Your City:" />
+            <button id="searchButton" type="reset" onclick="getCalledWeather()">
+              <img
+                src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-18.png"
+                width="15px"
+                height="15px"
+                alt=""
+              />
+            </button>
             <button id="formButton" type="reset">
               <img
                 src="https://icones.pro/wp-content/uploads/2021/08/icone-x-grise.png"
@@ -22,12 +31,142 @@
               />
             </button>
           </section>
-          <small id="formSmall">Selected:<b>None</b></small>
+          <small id="formSmall"
+            >Selected:<b><span id="selectedLocation">None</span></b></small
+          >
         </form>
       </section>
       <section class="main-section-2">
-        <header></header>
-        <section></section>
+        <header>
+          <article class="temp">
+            <p id="mainNumbers"><span id="currentTemp"></span>°C</p>
+            <p id="secondNumbers">
+              Feels like <span id="currentFLTemp"></span>°C
+            </p>
+          </article>
+          <article class="cityName">
+            <p id="weather"><span id="currentWeather"></span></p>
+            <p id="place">
+              <span id="mainCity"></span>,
+              <span id="mainCountry"></span>
+            </p>
+          </article>
+          <article id="icon">
+            <img
+              id="mainIcon"
+              src="http://openweathermap.org/img/wn/10d@2x.png"
+              width="100px"
+              height="100px"
+              alt=""
+            />
+          </article>
+        </header>
+        <section id="anotherValues">
+          <article class="another-temp-values">
+            <div><span id="firstDay">DAY</span></div>
+            <div class="weather-info">
+              <div class="weather-icon">
+                <span
+                  ><img
+                  id="firstDayImg"
+                    src="http://openweathermap.org/img/wn/10d@2x.png"
+                    width="70px"
+                    height="70px"
+                    alt=""
+                /></span>
+              </div>
+              <div class="weather-description">
+                <span id="firstDayWeatherDescription">broken clouds</span>
+              </div>
+            </div>
+            <div class="temp-values">
+              <div class="first-temp-value">
+                <span id="firstDayMaxTemp">-12</span>°C
+              </div>
+              <div class="second-temp-value">
+                <span id="firstDayMinTemp">-15</span>°C
+              </div>
+            </div>
+          </article>
+          <article class="another-temp-values">
+            <div><span id="secondDay">DAY</span></div>
+            <div class="weather-info">
+              <div class="weather-icon">
+                <span
+                  ><img
+                  id="secondDayImg"
+                    src="http://openweathermap.org/img/wn/10d@2x.png"
+                    width="70px"
+                    height="70px"
+                    alt=""
+                /></span>
+              </div>
+              <div class="weather-description">
+                <span id="secondDayWeatherDescription">broken clouds</span>
+              </div>
+            </div>
+            <div class="temp-values">
+              <div class="first-temp-value">
+                <span id="secondDayMaxTemp">-12</span>°C
+              </div>
+              <div class="second-temp-value">
+                <span id="secondDayMinTemp">-15</span>°C
+              </div>
+            </div>
+          </article>
+          <article class="another-temp-values">
+            <div><span id="thirdDay">DAY</span></div>
+            <div class="weather-info">
+              <div class="weather-icon">
+                <span
+                  ><img
+                  id="thirdDayImg"
+                    src="http://openweathermap.org/img/wn/10d@2x.png"
+                    width="70px"
+                    height="70px"
+                    alt=""
+                /></span>
+              </div>
+              <div class="weather-description">
+                <span id="thirdDayWeatherDescription">broken clouds</span>
+              </div>
+            </div>
+            <div class="temp-values">
+              <div class="first-temp-value">
+                <span id="thirdDayMaxTemp">-12</span>°C
+              </div>
+              <div class="second-temp-value">
+                <span id="thirdDayMinTemp">-15</span>°C
+              </div>
+            </div>
+          </article>
+          <article class="another-temp-values">
+            <div><span id="fourthDay">DAY</span></div>
+            <div class="weather-info">
+              <div class="weather-icon">
+                <span
+                  ><img
+                  id="fourthDayImg"
+                    src="http://openweathermap.org/img/wn/10d@2x.png"
+                    width="70px"
+                    height="70px"
+                    alt=""
+                /></span>
+              </div>
+              <div class="weather-description">
+                <span id="fourthDayWeatherDescription">broken clouds</span>
+              </div>
+            </div>
+            <div class="temp-values">
+              <div class="first-temp-value">
+                <span id="fourthDayMaxTemp">-12</span>°C
+              </div>
+              <div class="second-temp-value">
+                <span id="fourthDayMinTemp">-15</span>°C
+              </div>
+            </div>
+          </article>
+        </section>
       </section>
     </main>
   </body>
