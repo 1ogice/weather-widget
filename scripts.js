@@ -31,12 +31,13 @@ function APIcall(res) {
   mainCountry.innerHTML = res.data.sys.country;
   selectedLocation.innerHTML = res.data.name;
 }
-function getNum() {
-  let date = new Date();
-  date = date.getDate();
 
-  return date;
-}
+// function getNum() {
+//   let date = new Date();
+//   date = date.getDate();
+
+//   return date;
+// }
 
 function changeInfo(list) {
   firstDayWeatherDescription.innerHTML = list[1].weather[0].main;
@@ -93,9 +94,6 @@ function getCalledWeather(city) {
       let nextUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
 
       axios.get(nextUrl).then((result) => {
-        // let date = getNum();
-        // console.log(date);
-        // console.log(result.data.list[0].dt_txt);
         let list = result.data.list;
         list = list
           .map((item) => {
@@ -106,7 +104,6 @@ function getCalledWeather(city) {
           .filter((item) => {
             return item !== undefined;
           });
-        // console.log(list);
         changeInfo(list);
       });
     });
@@ -128,9 +125,6 @@ function getCurrentWeather() {
       let nextUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
 
       axios.get(nextUrl).then((result) => {
-        // let date = getNum();
-        // console.log(date);
-        // console.log(result.data.list[0].dt_txt);
         let list = result.data.list;
         list = list
           .map((item) => {
@@ -141,7 +135,6 @@ function getCurrentWeather() {
           .filter((item) => {
             return item !== undefined;
           });
-        // console.log(list);
         changeInfo(list);
       });
     });
