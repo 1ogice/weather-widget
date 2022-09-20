@@ -3,7 +3,7 @@ let api = "b98c0b7f365379e61f86e7da30e4ed56";
 let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 let daysOfWeek = [firstDay, secondDay, thirdDay, fourthDay];
 
-function logDaysOfWeek(day) {
+((day) => {
   let date = new Date();
   day = date.getDay();
 
@@ -18,13 +18,11 @@ function logDaysOfWeek(day) {
     let res = days[(i + 1) % days.length];
     dayOfWeek.innerHTML = `${res}`;
   }
-}
-logDaysOfWeek();
+})();
 
-function iconURL(icon) {
-  let iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-  return iconURL;
-}
+let iconURL = (icon) => {
+  return `http://openweathermap.org/img/wn/${icon}@2x.png`;
+};
 
 function APIcall(res) {
   icon = res.data.weather[0].icon;
@@ -49,7 +47,7 @@ function setDaysWeatherInfo(list) {
 }
 
 function filterData(list) {
-  list = list
+  list
     .map((item) => {
       if (item.dt_txt.includes("12:00:00")) {
         return item;
@@ -58,12 +56,12 @@ function filterData(list) {
     .filter((item) => {
       return item !== undefined;
     });
+  return list;
 }
 
-function forecastURL(city, api) {
-  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
-  return forecastURL;
-}
+let forecastURL = (city, api) => {
+  return `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&appid=${api}&units=metric`;
+};
 
 function getCalledWeather() {
   city = search.value;
@@ -75,13 +73,13 @@ function getCalledWeather() {
 
     axios.get(forecastURL(city, api)).then((result) => {
       let list = result.data.list;
-      filterData(list);
+      list = filterData(list);
       setDaysWeatherInfo(list);
     });
   });
 }
 
-function getCurrentWeather() {
+(() => {
   navigator.geolocation.getCurrentPosition((position) => {
     let posURL = `https://api.openweathermap.org/data/2.5/weather?lat=${+position.coords.latitude.toFixed(
       2
@@ -93,19 +91,17 @@ function getCurrentWeather() {
 
       axios.get(forecastURL(city, api)).then((result) => {
         let list = result.data.list;
-        filterData(list);
+        list = filterData(list);
         setDaysWeatherInfo(list);
       });
     });
   });
-}
-getCurrentWeather();
+})();
 
-function cancelEnterKey() {
+(() => {
   search.addEventListener("keydown", function (event) {
     if (event.keyCode == 13) {
       event.preventDefault();
     }
   });
-}
-cancelEnterKey();
+})();
